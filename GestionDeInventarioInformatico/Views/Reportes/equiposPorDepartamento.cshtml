@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = null; // asi no use el layout
+}
+
+<h2>equiposPorDepartamento</h2>
+
+@foreach(var Depto in ViewData["departamentos"] as IList<departamentos>)
+{
+<h2>@Depto.nombre</h2>
+
+
+
+
+<div class="table-responsive" id="tablaEquipos">
+    <table class="table">
+        <thead id="tEquipos-header">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Departamento</th>
+                <th>Fecha de Adquisición</th>
+                <th>Cantidad de Cambios</th>
+                <th>Usuario Asignado</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var equipo in ViewData["equipos"] as IList<equipos>)
+            {
+               
+                if (equipo.departamentos != null) { 
+                if (equipo.departamentos.nombre.Equals(Depto.nombre))
+                {
+
+
+                        <tr>
+                            <td>@equipo.idEquipo</td>
+                            <td>@equipo.nombre</td>
+
+                            <td>@equipo.tipoEquipos.descripcion</td>
+                            @if (equipo.departamentos == null)
+
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>@equipo.departamentos.nombre</td>
+                            }
+
+                            <td>@equipo.fecCompra.Date</td>
+                            <td>
+                                @equipo.historialCambios.Count
+                            </td>
+                            <td>
+                                @equipo.usuarios.ElementAt(0).nickname
+
+                            </td>
+                        </tr>
+                    }
+
+            }
+            }
+        </tbody>
+         
+    </table>
+
+    
+</div>
+}
