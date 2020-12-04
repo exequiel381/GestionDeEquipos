@@ -12,6 +12,6 @@ namespace GestionDeInventarioInformatico.Models
         Mouse,
         Teclado,
         Impresora,
-        Scanner
+        Scanner,
     }
 }

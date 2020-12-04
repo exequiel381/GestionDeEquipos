@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="979a20bc69414cabb10b1f9aaf42313e" Name="Diagram1">
-        <EntityTypeShape EntityType="gestionDBModel.cambioTipos" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="9fe901e33c5440fdac788f0a2baa2572" Name="Diagram1">
+        <EntityTypeShape EntityType="gestionDBModel.cambioTipos" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.departamentos" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.equipos" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestionDBModel.historialCambios" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestionDBModel.marcas" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionDBModel.historialCambios" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionDBModel.marcas" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.perifericos" Width="1.5" PointX="10.5" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.proveedores" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.ramtipo" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="gestionDBModel.tipoEquipos" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestionDBModel.tipoPerifericos" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestionDBModel.unidadAlmacenamiento" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestionDBModel.usuarios" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionDBModel.tipoPerifericos" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionDBModel.unidadAlmacenamiento" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestionDBModel.usuarios" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
         <AssociationConnector Association="gestionDBModel.FK__historial__idTip__756D6ECB" ManuallyRouted="false" />
         <AssociationConnector Association="gestionDBModel.FK__equipos__idDepar__29E1370A" ManuallyRouted="false" />
         <AssociationConnector Association="gestionDBModel.FK__usuarios__idDepa__7F2BE32F" ManuallyRouted="false" />

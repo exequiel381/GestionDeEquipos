@@ -24,6 +24,7 @@ namespace GestionDeInventarioInformatico
     
         public int idMarca { get; set; }
         public string descripcion { get; set; }
+        public string logourl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<equipos> equipos { get; set; }

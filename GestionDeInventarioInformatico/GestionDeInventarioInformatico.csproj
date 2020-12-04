@@ -146,11 +146,6 @@
     <Compile Include="Controllers\PerifericosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\usuariosController.cs" />
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="departamentos.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -220,6 +215,7 @@
     <Content Include="Content\fonts\ionicons.min.css" />
     <Content Include="Content\fonts\ionicons.svg" />
     <Content Include="Content\img\Gold_Star.svg" />
+    <Content Include="Content\img\Logo.svg" />
     <Content Include="Content\js\jquery.min.js" />
     <Content Include="Content\js\theme.js" />
     <Content Include="favicon.ico" />
@@ -244,24 +240,13 @@
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="App_Browsers\qt.browser" />
     <EntityDeploy Include="Modelo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Modelo.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Modelo.edmx.diagram">
       <DependentUpon>Modelo.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Content>
-    <Content Include="App_Browsers\qt.browser" />
-    <None Include="DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -274,7 +259,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Home\registrarEquipo.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -67,11 +67,10 @@ namespace GestionDeInventarioInformatico.Controllers
         }
         public ActionResult GuardarEstado(int perifericoEstado)
         {
-            periferico.estado = perifericoEstado;
-            db.perifericos.FirstOrDefault(p => p.idPeriferico == periferico.idPeriferico);
+            db.perifericos.FirstOrDefault(p => p.idPeriferico == periferico.idPeriferico).estado = perifericoEstado;
             db.SaveChanges();
             db.Dispose();
-            return RedirectToAction("Index", "Home");
+            return View("Index", "Home");
         }
         public ActionResult Finalizar()
         {

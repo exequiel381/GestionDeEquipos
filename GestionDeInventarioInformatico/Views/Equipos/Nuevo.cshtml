@@ -126,7 +126,7 @@
                                     <select form="GuardarEquipoForm" name="marca" class="border rounded shadow-sm custom-select d-xl-flex justify-content-xl-start" id="equipoMarca" style="font-size: 20px;width: 160px;" required="">
                                         <optgroup label="Marcas registradas">
                                         
-                                            
+                                            <option value="0">-</option>
                                                 @foreach (var m in TempData["marcas"] as IList<marcas>)
                                                 {
                                                     if (Model.marcas != null && m.idMarca == Model.marcas.idMarca)

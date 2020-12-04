@@ -58,6 +58,7 @@
         <MappingFragment StoreEntitySet="marcas">
           <ScalarProperty Name="idMarca" ColumnName="idMarca" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="logourl" ColumnName="logourl" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

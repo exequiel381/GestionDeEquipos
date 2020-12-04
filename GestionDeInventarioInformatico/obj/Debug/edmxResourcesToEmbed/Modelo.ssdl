@@ -19,7 +19,7 @@
       <PropertyRef Name="idEquipo" />
     </Key>
     <Property Name="idEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="modelo" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="fecCompra" Type="datetime" Nullable="false" />
     <Property Name="garantia" Type="date" />
@@ -55,6 +55,7 @@
     </Key>
     <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="logourl" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="perifericos">
     <Key>
@@ -62,7 +63,7 @@
     </Key>
     <Property Name="idPeriferico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fecCompra" Type="datetime" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="garantia" Type="date" />
     <Property Name="estado" Type="int" Nullable="false" />
     <Property Name="modelo" Type="varchar" MaxLength="100" Nullable="false" />
