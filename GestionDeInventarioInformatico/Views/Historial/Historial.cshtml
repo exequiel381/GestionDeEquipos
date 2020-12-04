@@ -125,9 +125,9 @@
                                             <select class="border rounded shadow-sm custom-select" id="selectUnidadGbHDD" style="font-size: 20px;width: 160px;height: 42px;" readonly="" disabled="">
                                             <optgroup label="Almacenamiento">
                                                 
-                                                      @if (Model.unidadAlmacenamiento.descripcion== "GB") { <option value="1" selected="">GB</option> }
+                                                      @if (Model.hddUnidad == 1) { <option value="1" selected="">GB</option> }
                                                       else { <option value="1">GB</option> }
-                                                      @if (Model.unidadAlmacenamiento.descripcion == "TB") { <option value="2" selected="">TB</option> }
+                                                      @if (Model.hddUnidad == 2) { <option value="2" selected="">TB</option> }
                                                       else { <option value="2" >TB</option> }
                                              </optgroup>
                                             </select>

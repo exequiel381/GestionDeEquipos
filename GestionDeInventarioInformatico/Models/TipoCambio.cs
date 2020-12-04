@@ -8,6 +8,7 @@ namespace GestionDeInventarioInformatico.Models
     public enum TipoCambio
     {
         Reparacion = 1,
-        Actualizacion
+        Actualizacion,
+        Inicio
     }
 }

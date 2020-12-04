@@ -36,6 +36,7 @@ namespace GestionDeInventarioInformatico.Controllers
             {
                 TempData["cambios"] = equipo.historialCambios.ToList();
             }
+            if (equipo.marcas == null) equipo.marcas = new marcas();
             return View(equipo);
         }
         #region Cambios
@@ -157,7 +158,6 @@ namespace GestionDeInventarioInformatico.Controllers
         {
             TempData["marcas"] = db.marcas.ToList();
             TempData.Keep("marcas");
-
         }
 
 

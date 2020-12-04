@@ -70,7 +70,7 @@ namespace GestionDeInventarioInformatico.Controllers
             db.perifericos.FirstOrDefault(p => p.idPeriferico == periferico.idPeriferico).estado = perifericoEstado;
             db.SaveChanges();
             db.Dispose();
-            return View("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Finalizar()
         {

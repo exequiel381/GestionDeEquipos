@@ -82,6 +82,7 @@ namespace GestionDeInventarioInformatico.Controllers
         public ActionResult GuardarEquipo(FormCollection formCollection)
         {
             equipos e = new equipos();
+
             e.nombre = formCollection["nombre"];
             e.fecCompra = DateTime.Parse(formCollection["fecCompra"]);
             e.garantia = DateTime.Parse(formCollection["fecGarantia"]);
@@ -102,6 +103,17 @@ namespace GestionDeInventarioInformatico.Controllers
             e.idTipoEquipo = Int32.Parse(formCollection["tipoEquipo"]);
             e.gpu = formCollection["gpu"];
             e.modelo = formCollection["modelo"];
+
+            historialCambios h = new historialCambios();
+            h.cambioTipos.idCambio = (int) TipoCambio.Inicio;
+            h.idEquipo = equipo.idEquipo;
+            h.idHistorialCambio = e.historialCambios.Count + 1;
+            h.descripcion = "";
+            h.observaciones = "";
+            h.fecha = DateTime.Now;
+            h.idTipoCambio = 0;
+            e.historialCambios.Add(h);
+
             db.equipos.Add(e);
             db.SaveChanges();
             return Finalizar();
