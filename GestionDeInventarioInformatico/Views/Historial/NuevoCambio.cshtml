@@ -18,7 +18,7 @@
     <div>
         <form action="/Historial/GuardarCambio" id="GuardarCambio" method="post"></form>
         <form action="/Historial/AgregarPeriferico" id="agregarPerifericoForm" method="post"></form>
-        <form action="/Historial/BuscarTipoPeriferico" id="BuscarTipoPeriferico" method="post"></form>
+        <form action="/Historial/BuscarTipoPeriferico" id="BuscarTipoPeriferico" method="get"></form>
         <div class="container">
             <div class="row">
                 <div class="col d-xl-flex align-items-center align-self-start justify-content-xl-center">
@@ -112,7 +112,12 @@
                             <div class="row">
                                 <label style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-size: 20px;">&nbsp; Marca:&nbsp;</label>
                                 <div class="col">
-                                    <input form="GuardarCambio" name="marca" class="border rounded shadow-sm" type="text" id="equipoMarca" style="font-size: 20px;width: 261px;" required="" value="@Model.marcas.descripcion">
+                                    @if (Model.marcas != null)
+                                    {
+                                        <input form="GuardarCambio" name="marca" class="border rounded shadow-sm" type="text" id="equipoMarca" style="font-size: 20px;width: 261px;" required="" value="@Model.marcas.descripcion"> 
+                                    }
+                                    else {<input form="GuardarCambio" name="marca" class="border rounded shadow-sm" type="text" id="equipoMarca" style="font-size: 20px;width: 261px;" required="" value="-"> } 
+                                    
                                 </div>
                             </div>
                         </div>
@@ -156,7 +161,7 @@
                                     @foreach (GestionDeInventarioInformatico.Models.TipoEquipo a in Enum.GetValues(typeof(GestionDeInventarioInformatico.Models.TipoEquipo)))
                                     {
                                         int v = (int)a;
-                                        if (Model.ssdUnidad == v)
+                                        if (Model.idTipoEquipo == v)
                                         {
                                             <option value="@v" selected="">@a.ToString()</option>
                                         }
@@ -231,27 +236,30 @@
                                 <div class="row">
                                     <div class="col" style="height: 57px;">
                                         <label style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-size: 20px;">Tipo:&nbsp;</label>
-
+                                        
                                         <select name="tipoDePeriferico" form="BuscarTipoPeriferico" class="border rounded shadow-sm custom-select" id="perifericoSelectTipo" style="font-size: 20px;width: 194px;" onchange="this.form.submit()">
                                             <optgroup label="Seleccione tipo de perifierico">
                                                 @{
-                                                    
-                                                    if (TempData["tipoPerifericoSeleccionado"] != null)
+
+                                                    if (Session["tipoPerifericoSeleccionado"] != null)
                                                     {
-                                                        var tipo = TempData["tipoPerifericoSeleccionado"];
-                                                        <option value="0">-</option>
-                                                        foreach (GestionDeInventarioInformatico.Models.TipoPerifericos a in Enum.GetValues(typeof(GestionDeInventarioInformatico.Models.TipoPerifericos)))
+                                                        var tipo = Session["tipoPerifericoSeleccionado"];
+                                                        if ((int)tipo == 0)
                                                         {
-                                                            int v = (int)a;
-                                                            if ((int)tipo == v)
-                                                            {
-                                                                <option selected="" value="@v">@a.ToString()</option>
-                                                            }
-                                                            else
-                                                            {
-                                                                <option value="@v">@a.ToString()</option>
-                                                            }
+                                                            <option selected="" value="0">-</option>
                                                         }
+                                                            foreach (GestionDeInventarioInformatico.Models.TipoPerifericos a in Enum.GetValues(typeof(GestionDeInventarioInformatico.Models.TipoPerifericos)))
+                                                            {
+                                                                int v = (int)a;
+                                                                if ((int)tipo == v)
+                                                                {
+                                                                    <option selected="" value="@v">@a.ToString()</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="@v">@a.ToString()</option>
+                                                                }
+                                                            }
                                                     }
                                                     else
                                                     {
@@ -274,8 +282,9 @@
                                         <select class="border rounded shadow-sm custom-select" name="idPerifericoSeleccionado" form="agregarPerifericoForm" id="perifericoSelect" style="font-size: 20px;width: 218px;">
                                             <optgroup label="Seleccione un periférico">
                                                 @{
-                                                    List<perifericos> perifericos = TempData["perifericosDisponibles"] as List<perifericos>;
-                                                    if (TempData["perifericosDisponibles"] != null && (int)TempData["tipoPerifericoSeleccionado"] > 0)
+                                                    List<perifericos> perifericos = Session["perifericosDisponibles"] as List<perifericos>;
+                                                    int tipo2 = (int)Session["tipoPerifericoSeleccionado"];
+                                                    if (perifericos != null && (int)  tipo2 > 0)
                                                     {
 
                                                         foreach (var p in perifericos)

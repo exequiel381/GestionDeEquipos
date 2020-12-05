@@ -13,14 +13,14 @@ namespace GestionDeInventarioInformatico.Controllers
     public class HomeController : Controller
     {
         private gestionDBEntities db = new gestionDBEntities();
-        public ActionResult Index()
+
+        public ActionResult Index(string buscarEquipo, string buscarPeriferico)
         {
-           var equipos = db.equipos.Include(e => e.departamentos).Include(e => e.unidadAlmacenamiento).Include(e => e.marcas)
-                                   .Include(e => e.proveedores).Include(e => e.ramtipo).Include(e => e.tipoEquipos).Include(e => e.unidadAlmacenamiento1);
-            ViewData["equipos"] = equipos.ToList();
-            ViewData["perifericos"] = db.perifericos.Include(e => e.tipoPerifericos).ToList();
-            ViewData["cantidadPerifericos"] = db.perifericos.Count();
-           return View();
+            Session["equipos"] = buscarEquipos(buscarEquipo);
+            Session["busquedaEquipo"] = buscarEquipo;
+            Session["busquedaPeriferico"] = buscarPeriferico;
+            Session["perifericos"] = buscarPerifericos(buscarPeriferico);
+            return View();
         }
         public ActionResult proveedores()
         {
@@ -32,6 +32,14 @@ namespace GestionDeInventarioInformatico.Controllers
         {
            
             return View();
+        }
+        public List<equipos> buscarEquipos(string texto)
+        {
+            return db.equipos.Where(e => e.nombre.Contains(texto) || texto == null).ToList();
+        }
+        public List<perifericos> buscarPerifericos(string texto)
+        {
+            return db.perifericos.Where(e => e.nombre.Contains(texto) || texto == null).ToList();
         }
     }
 }

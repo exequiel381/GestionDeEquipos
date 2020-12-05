@@ -49,23 +49,14 @@ namespace GestionDeInventarioInformatico.Controllers
             if (equipo == null)
             {
                 equipo = db.equipos.Find(id);
-                TempData["perifericosDisponibles"] = db.perifericos.Where(p => p.estado == (int)EstadoPeriferico.Disponible).ToList();
-                TempData["tipoPerifericoSeleccionado"] = tipoPerifericoSeleccionado;
-                TempData.Keep("perifericosDisponibles");
-                TempData.Keep("tipoPerifericoSeleccionado");
+
                 if (equipo == null)
                 {
                     return HttpNotFound();
                 }
+                Session["perifericosDisponibles"] = db.perifericos.Where(p => p.estado == (int)EstadoPeriferico.Disponible).ToList();
             }
-            else
-            {
-                TempData["perifericosDisponibles"] = db.perifericos.Where(p => p.estado == (int)EstadoPeriferico.Disponible).ToList();
-                TempData["tipoPerifericoSeleccionado"] = tipoPerifericoSeleccionado;
-                TempData.Keep("perifericosDisponibles");
-                TempData.Keep("tipoPerifericoSeleccionado");
-            }
-
+            Session["tipoPerifericoSeleccionado"] = tipoPerifericoSeleccionado;
             return View(equipo);
         }
         public ActionResult AgregarPeriferico(int? idPerifericoSeleccionado)
@@ -77,6 +68,7 @@ namespace GestionDeInventarioInformatico.Controllers
                 periferico.idEquipo = equipo.idEquipo;
                 equipo.perifericos.Add(db.perifericos.FirstOrDefault(p => p.idPeriferico == idPerifericoSeleccionado));
                 db.SaveChanges();
+                Session["perifericosDisponibles"] = db.perifericos.Where(p => p.estado == (int)EstadoPeriferico.Disponible).ToList();
                 return RedirectToAction("NuevoCambio", "Historial", new { id = equipo.idEquipo });
             }
             return RedirectToAction("NuevoCambio", "Historial", new { id = equipo.idEquipo });
@@ -100,8 +92,7 @@ namespace GestionDeInventarioInformatico.Controllers
         public ActionResult BuscarTipoPeriferico(int? tipoDePeriferico)
         {
             var v = db.perifericos.Where(p => p.estado == (int)EstadoPeriferico.Disponible && p.tipoPerifericos.idTipoPeriferico == tipoDePeriferico).ToList();
-            TempData["perifericosDisponibles"] = v;
-            TempData.Keep("perifericosDisponibles");
+            Session["perifericosDisponibles"] = v;
             tipoPerifericoSeleccionado = (TipoPerifericos)Enum.Parse(typeof(TipoPerifericos), tipoDePeriferico.ToString());
             return RedirectToAction("NuevoCambio", "Historial", new { id = equipo.idEquipo });
         }
@@ -137,13 +128,13 @@ namespace GestionDeInventarioInformatico.Controllers
         #endregion
         public ActionResult Cancelar()
         {
-            //foreach (var periferico in equipo.perifericos)
-            //{
-            //    var equipo = db.perifericos.FirstOrDefault(p => p.idEquipo == periferico.idEquipo);
-            //    equipo.estado = (int)EstadoPeriferico.Disponible;
-            //    equipo.idEquipo = null;
-            //}
-            //db.SaveChanges();
+            foreach (var periferico in equipo.perifericos)
+            {
+                var equipo = db.perifericos.FirstOrDefault(p => p.idEquipo == periferico.idEquipo);
+                equipo.estado = (int)EstadoPeriferico.Disponible;
+                equipo.idEquipo = null;
+            }
+            db.SaveChanges();
             return Finalizar();
         }
         public ActionResult Finalizar()

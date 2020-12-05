@@ -7,9 +7,9 @@
       <Schema Namespace="gestionDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cambioTipos">
           <Key>
-            <PropertyRef Name="idCambio" />
+            <PropertyRef Name="idTipoCambio" />
           </Key>
-          <Property Name="idCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoCambio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="departamentos">
@@ -243,14 +243,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__historial__idTip__756D6ECB">
+        <Association Name="FK__historial__idTip__54CB950F">
           <End Role="cambioTipos" Type="Self.cambioTipos" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="historialCambios" Type="Self.historialCambios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cambioTipos">
-              <PropertyRef Name="idCambio" />
+              <PropertyRef Name="idTipoCambio" />
             </Principal>
             <Dependent Role="historialCambios">
               <PropertyRef Name="idTipoCambio" />
@@ -416,7 +416,7 @@
             <End Role="equipos" EntitySet="equipos" />
             <End Role="historialCambios" EntitySet="historialCambios" />
           </AssociationSet>
-          <AssociationSet Name="FK__historial__idTip__756D6ECB" Association="Self.FK__historial__idTip__756D6ECB">
+          <AssociationSet Name="FK__historial__idTip__54CB950F" Association="Self.FK__historial__idTip__54CB950F">
             <End Role="cambioTipos" EntitySet="cambioTipos" />
             <End Role="historialCambios" EntitySet="historialCambios" />
           </AssociationSet>
@@ -464,11 +464,11 @@
       <Schema Namespace="gestionDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="cambioTipos">
           <Key>
-            <PropertyRef Name="idCambio" />
+            <PropertyRef Name="idTipoCambio" />
           </Key>
-          <Property Name="idCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="historialCambios" Relationship="Self.FK__historial__idTip__756D6ECB" FromRole="cambioTipos" ToRole="historialCambios" />
+          <NavigationProperty Name="historialCambios" Relationship="Self.FK__historial__idTip__54CB950F" FromRole="cambioTipos" ToRole="historialCambios" />
         </EntityType>
         <EntityType Name="departamentos">
           <Key>
@@ -523,7 +523,7 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="idEquipo" Type="Int32" Nullable="false" />
           <Property Name="idTipoCambio" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cambioTipos" Relationship="Self.FK__historial__idTip__756D6ECB" FromRole="historialCambios" ToRole="cambioTipos" />
+          <NavigationProperty Name="cambioTipos" Relationship="Self.FK__historial__idTip__54CB950F" FromRole="historialCambios" ToRole="cambioTipos" />
           <NavigationProperty Name="equipos" Relationship="Self.FK__historial__idEqu__2EA5EC27" FromRole="historialCambios" ToRole="equipos" />
         </EntityType>
         <EntityType Name="marcas">
@@ -618,14 +618,14 @@
           <NavigationProperty Name="departamentos" Relationship="Self.FK__usuarios__idDepa__7F2BE32F" FromRole="usuarios" ToRole="departamentos" />
           <NavigationProperty Name="equipos" Relationship="Self.usuario_equipo" FromRole="usuarios" ToRole="equipos" />
         </EntityType>
-        <Association Name="FK__historial__idTip__756D6ECB">
+        <Association Name="FK__historial__idTip__54CB950F">
           <End Role="cambioTipos" Type="Self.cambioTipos" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="historialCambios" Type="Self.historialCambios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="cambioTipos">
-              <PropertyRef Name="idCambio" />
+              <PropertyRef Name="idTipoCambio" />
             </Principal>
             <Dependent Role="historialCambios">
               <PropertyRef Name="idTipoCambio" />
@@ -813,7 +813,7 @@
           <EntitySet Name="tipoPerifericos" EntityType="Self.tipoPerifericos" />
           <EntitySet Name="unidadAlmacenamiento" EntityType="Self.unidadAlmacenamiento" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" />
-          <AssociationSet Name="FK__historial__idTip__756D6ECB" Association="Self.FK__historial__idTip__756D6ECB">
+          <AssociationSet Name="FK__historial__idTip__54CB950F" Association="Self.FK__historial__idTip__54CB950F">
             <End Role="cambioTipos" EntitySet="cambioTipos" />
             <End Role="historialCambios" EntitySet="historialCambios" />
           </AssociationSet>
@@ -887,7 +887,7 @@
           <EntitySetMapping Name="cambioTipos">
             <EntityTypeMapping TypeName="gestionDBModel.cambioTipos">
               <MappingFragment StoreEntitySet="cambioTipos">
-                <ScalarProperty Name="idCambio" ColumnName="idCambio" />
+                <ScalarProperty Name="idTipoCambio" ColumnName="idTipoCambio" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>

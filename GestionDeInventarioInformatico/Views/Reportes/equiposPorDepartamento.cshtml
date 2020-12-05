@@ -3,7 +3,7 @@
     ViewBag.Title = null; // asi no use el layout
 }
 
-<h2>equiposPorDepartamento</h2>
+<h2 style="text-align: center">Equipos por departamento</h2>
 
 @foreach (var Depto in ViewData["departamentos"] as IList<departamentos>)
 {
@@ -56,10 +56,14 @@
                                 <td>
                                     @equipo.historialCambios.Count
                                 </td>
-                                <td>
-                                    @equipo.usuarios.ElementAt(0).nickname
+                                @if (equipo.usuarios.Count > 0)
+                                {
+                                    <td>
+                                        @equipo.usuarios.ElementAt(0).nickname
 
-                                </td>
+                                    </td>
+                                }
+
                             </tr>
                         }
 

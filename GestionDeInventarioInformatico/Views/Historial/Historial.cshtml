@@ -43,7 +43,7 @@
                                     {
                                     <tr>
                                         <td>@cambio.idHistorialCambio</td>
-                                        <td>@cambio.fecha</td>
+                                        <td>@cambio.fecha.ToShortDateString()</td>
                                         <td>
                                             <input type="button" class="btn btn-primary" style="background-color: rgb(17,37,96);font-size: 20px;"
                                                    onclick="location.href='@Url.Action("Detalle", "Historial", new {idCambio = cambio.idHistorialCambio, idEquipo = cambio.idEquipo})';" value="Ver" />
@@ -99,6 +99,10 @@
                                         <label style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-size: 20px;">Nombre:&nbsp;</label>
                                         <input class="border rounded shadow-sm" type="text" id="equipoNombre" style="font-size: 20px;background-color: rgb(240,240,245);" value="@Model.nombre" diseable="" readonly="">
                                     </div>
+                                    <div class="col d-xl-flex align-items-xl-center" id="equipoNombre" style="height: 50px; width: auto">
+                                        <label style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-size: 20px;">Proveedor:&nbsp;</label>
+                                        <input class="border rounded shadow-sm" type="text" style="font-size: 20px;background-color: rgb(240,240,245);" value="@Model.proveedores.razSoc" diseable="" readonly="">
+                                    </div>
                                 </div>
                                 <div class="row" id="ram">
                                     <div class="col">
@@ -142,6 +146,7 @@
                                             <label style="color: rgb(0,0,0);font-family: Nunito, sans-serif;font-size: 20px;">&nbsp; Marca:&nbsp;</label>
                                             <div class="col" style="height: 85px;">
                                                 <input class="border rounded shadow-sm" type="text" id="equipoMarca" style="font-size: 20px;width: 261px;background-color: rgb(255,255,255);" disabled="" readonly="" value="@Model.marcas.descripcion">
+                                                <img img src="@Model.marcas.logourl" style="height: 30px;">
                                             </div>
                                         </div>
                                     </div>
@@ -173,7 +178,7 @@
 
                                                     <td>@periferico.modelo</td>
                                                     <td>@periferico.tipoPerifericos.descripcion</td>
-                                                    <td>@periferico.fecCompra.Date</td>
+                                                    <td>@periferico.fecCompra.Date.ToShortDateString()</td>
                                                     <td>@Enum.Parse(typeof(GestionDeInventarioInformatico.Models.EstadoPeriferico), periferico.estado.ToString()).ToString()</td>
                                                     <td>
                                                     </td>

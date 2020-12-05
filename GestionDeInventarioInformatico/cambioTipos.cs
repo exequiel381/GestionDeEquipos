@@ -20,7 +20,7 @@ namespace GestionDeInventarioInformatico
             this.historialCambios = new HashSet<historialCambios>();
         }
     
-        public int idCambio { get; set; }
+        public int idTipoCambio { get; set; }
         public string descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

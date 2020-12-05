@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model GestionDeInventarioInformatico.equipos
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -27,6 +28,7 @@
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
+            <form action="/Home/Index" id="busquedaEquipoForm" method="get"></form>
             <div id="content">
                 <div class="d-sm-flex align-items-center justify-content-xl-center mb-4">
                     <h1 class="text-dark d-xl-flex align-content-center justify-content-xl-center mb-0" style="width: 391px;">Equipos Informáticos</h1>
@@ -54,10 +56,9 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><input type="search" id="busquedaEquipo" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" style="font-size: 19px;"><label></label></div>
-                                        </div>
-                                        <div class="col-md-6 text-nowrap">
-                                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable" style="font-size: 19px;"><label>Mostrar<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                            <div class="text-md-right dataTables_filter" id="dataTable_filter">
+                                                <input name="buscarEquipo" type="search" id="busquedaEquipo" form="busquedaEquipoForm" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar" style="font-size: 19px;" onchange="this.form.submit();" value="@Session["busquedaEquipo"]"><label></label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive" id="tablaEquipos">
@@ -76,7 +77,7 @@
 
                                             <tbody>
 
-                                                @foreach (var equipo in ViewData["equipos"] as IList<equipos>)
+                                                @foreach (var equipo in Session["equipos"] as IList<equipos>)
                                                 {
                                                     <tr>
                                                         <td>@equipo.idEquipo</td>
@@ -93,7 +94,7 @@
                                                             <td>@equipo.departamentos.nombre</td>
                                                         }
 
-                                                        <td>@equipo.fecCompra.Date</td>
+                                                        <td>@equipo.fecCompra.Date.ToShortDateString()</td>
                                                         <td>
                                                             <input type="button" class="btn btn-primary" style="background-color: rgb(17,37,96);font-size: 20px;"
                                                                    onclick="location.href='@Url.Action("Historial", "Historial", new { id = equipo.idEquipo})';" value="Ver" />
@@ -123,10 +124,10 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="text-md-right dataTables_filter" id="dataTable_filter"><input type="search" id="busquedaEquipo" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" style="font-size: 19px;"><label></label></div>
-                                        </div>
-                                        <div class="col-md-6 text-nowrap">
-                                            <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable" style="font-size: 19px;"><label>Mostrar<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                            <div class="text-md-right dataTables_filter" id="dataTable_filter">
+                                            <input form="busquedaEquipoForm" name="buscarPeriferico" type="search" id="busquedaEquipo" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Buscar" style="font-size: 19px;" onchange="this.form.submit();" value="@Session["busquedaPeriferico"]">
+                                                <label>Ingrese nombre de periférico</label>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive" id="tablaEquipos">
@@ -144,7 +145,7 @@
                                             </thead>
 
                                             <tbody>
-                                                @foreach (var periferico in ViewData["perifericos"] as IList<perifericos>)
+                                                @foreach (var periferico in Session["perifericos"] as IList<perifericos>)
                                                 {
                                                     <tr id="seleccionable">
                                                         <td>@periferico.idPeriferico</td>
@@ -152,10 +153,12 @@
 
                                                         <td>@periferico.modelo</td>
                                                         <td>@periferico.tipoPerifericos.descripcion</td>
-                                                        <td>@periferico.fecCompra.Date</td>
+                                                        <td>@periferico.fecCompra.Date.ToShortDateString()</td>
                                                         <td>@Enum.Parse(typeof(GestionDeInventarioInformatico.Models.EstadoPeriferico), periferico.estado.ToString()).ToString()</td>
-                                                        <td><input type="button" class="btn btn-primary" style="background-color: rgb(17,37,96);font-size: 20px;"
-                                                        onclick="location.href='@Url.Action("Ver", "perifericos", new { id = periferico.idPeriferico})';" value="Ver" /></td>
+                                                        <td>
+                                                            <input type="button" class="btn btn-primary" style="background-color: rgb(17,37,96);font-size: 20px;"
+                                                                   onclick="location.href='@Url.Action("Ver", "perifericos", new { id = periferico.idPeriferico})';" value="Ver" />
+                                                        </td>
                                                     </tr>
                                                 }
                                             </tbody>
@@ -169,8 +172,6 @@
             </div>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top" style="filter: blur(0px) hue-rotate(0deg);"><i class="fas fa-backward"></i></a>
     </div>
-
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>

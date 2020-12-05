@@ -4,7 +4,7 @@
     <EntitySetMapping Name="cambioTipos">
       <EntityTypeMapping TypeName="gestionDBModel.cambioTipos">
         <MappingFragment StoreEntitySet="cambioTipos">
-          <ScalarProperty Name="idCambio" ColumnName="idCambio" />
+          <ScalarProperty Name="idTipoCambio" ColumnName="idTipoCambio" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
